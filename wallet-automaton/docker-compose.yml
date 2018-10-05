@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  automaton:
+    build: .
+    ports:
+      - 3600:80
+    environment:
+      - ETHEREUM_WALLET_PRIVATE_KEY
+      - ETHEREUM_NODE_URL
+      - ETHEREUM_NETWORK_ID
+      - HUB_CONTRACT_ADDRESS
+      - HUB_PROVIDER_URL
+    volumes:
+      - ./tx-db.json:/code/tx_dump.json
+      - ./invoices.json:/code/invoices.json
+      - ./config.json:/code/config.json:ro

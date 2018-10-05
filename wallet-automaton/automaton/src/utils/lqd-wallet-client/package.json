@@ -1,0 +1,7 @@
+{
+  "name": "lqd-wallet-client",
+  "version": "0.0.2",
+  "description": "An off-chain wallet client for Liquidity.Network",
+  "main": "index.js",
+  "author": "Rami Khalil <rami@liquidity.network>"
+}
