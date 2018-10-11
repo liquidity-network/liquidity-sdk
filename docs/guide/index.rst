@@ -43,9 +43,12 @@ follow the instructions listed below.
 1. Clone Liquidity SDK repository 🐑
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. highlight:: shell
 .. code:: shell
 
    git clone git@github.com/liquidity-network/liquidity-sdk
+
+.. highlight:: none
 
 Alternatively, you can download it from
 `here <https://github.com/liquidity-network/liquidity-sdk/archive/master.zip>`__
@@ -59,12 +62,18 @@ A template of the configuration is provided within
 ``config.template.json``. You have to copy it into ``config.json`` and
 edit the configuration.
 
+.. highlight:: shell
 .. code:: shell
 
    cp config.template.json config.json
+.. highlight:: none
 
 Your configuration file should look like the following
 
+Mainnet
+"""""""
+
+.. highlight:: json
 .. code:: json
 
    {
@@ -74,15 +83,33 @@ Your configuration file should look like the following
      "HUB_CONTRACT_ADDRESS": "0xac8c3D5242b425DE1b86b17E407D8E949D994010",
      "HUB_PROVIDER_URL": "https://beta.liquidity.network"
    }
+.. highlight:: none
+
+Kovan Testnet
+"""""""""""""
+.. highlight:: json
+.. code:: json
+
+   {
+     "ETHEREUM_WALLET_PRIVATE_KEY": "0x...",
+     "ETHEREUM_NODE_URL": "https://kovan.infura.io",
+     "ETHEREUM_NETWORK_ID": "42",
+     "HUB_CONTRACT_ADDRESS": "0x182e0AA3FCE28FC6c623C80363841375Fd636E0A",
+     "HUB_PROVIDER_URL": "https://kovan.liquidity.network"
+   }
+.. highlight:: none
 
 .. _header-n8797:
 
 3. Start your wallet 👩‍🔧
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. highlight:: shell
 .. code:: shell
 
    docker-compose up -d
+
+.. highlight:: none
 
 For those of you who are on have a graphic docker version, you have to
 launch ``docker-compose.yml`` file located at the root of liquidity sdk

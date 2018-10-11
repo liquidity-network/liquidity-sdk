@@ -1,3 +1,5 @@
+const invoiceFactory = require('liquidity-invoice-generation')
+const qrcode = require('qrcode')
 const request = require('request-promise-native')
 
 const config = {
@@ -45,6 +47,10 @@ module.exports = {
             const res = await request
                 .get(`${config.automatonUrl}/invoices/list?${query}`)
             return res.body
+        },
+        qrcode: (filename, invoice) => {
+            const data = invoiceFactory.encodeInvoice(invoice.invoice)
+            qrcode.toFile(filename, data, { width: 300 }, function (err) {})
         }
     },
     wallet: {
