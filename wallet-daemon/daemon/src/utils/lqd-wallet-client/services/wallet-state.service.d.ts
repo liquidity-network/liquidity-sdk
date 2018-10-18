@@ -1,0 +1,37 @@
+import { Wallet } from "../models/wallet/wallet.model";
+import { Observable } from "rxjs";
+import { Observer } from "rxjs";
+import { HubState } from "../models/state/hub-state.model";
+import { ContractState } from "../models/state/contract-state.model";
+import { ContractApiService } from "./contract-api.service";
+import { HubApiService } from "./hub-api.service";
+import { WalletState } from "../models/state/wallet-state.model";
+import { StatePoll } from "../models/state/state-poll.model";
+export declare class WalletStateService {
+    walletStatePollObservable: Observable<StatePoll>;
+    private hubStateFetchObservable;
+    private contractStateFetchObservable;
+    private walletStateSyncObserver;
+    private contractApi;
+    private hubApi;
+    constructor(walletStatePollObservable: Observable<StatePoll>, hubStateFetchObservable: Observable<HubState>, contractStateFetchObservable: Observable<ContractState>, walletStateSyncObserver: Observer<WalletState>, contractApi: ContractApiService, hubApi: HubApiService);
+    syncWalletState(wallet: Wallet, contractState: ContractState, hubState: HubState): Promise<WalletState>;
+    private updateOnChainData(wallet, contractState, hubState);
+    private updatePendingRegistrationState(wallet, contractState, hubState);
+    private updateRegistrationState(wallet, contractState, hubState);
+    private updateOlderRoundStates(wallet, contractState, hubState);
+    private updatePreviousRoundState(wallet, contractState, hubState);
+    private updateCurrentRoundState(wallet, contractState, hubState);
+    private updateLatestLocalRoundProofStake(wallet, contractState, hubState);
+    private updateLatestRoundAggregate(wallet, contractState, hubState);
+    private updateLatestRoundAggregateTransactions(wallet, transactions, transactionIndex, contractState, hubState);
+    private updateLatestRoundAggregateTransfers(wallet, transferData, contractState, hubState, processNextTransaction);
+    private updateLatestRoundAggregateSwaps(wallet, transferData, contractState, hubState, processNextTransaction);
+    private updateLatestRoundWithdrawalRequests(wallet, contractState, hubState);
+    private updateLatestRoundOnChainWithdrawal(wallet, contractState, hubState);
+    private updateLatestRoundDeposits(wallet, contractState, hubState);
+    private updateCurrentRoundOnChainDeposits(wallet, contractState, hubState);
+    private updateLatestRoundDeliveryReceipts(wallet, contractState, hubState);
+    private updateDeliveryReceipt(wallet, transfers, proofs, transferIndex, contractState, hubState, badReceiptFound?);
+    private progressRound(wallet, contractState, hubState);
+}

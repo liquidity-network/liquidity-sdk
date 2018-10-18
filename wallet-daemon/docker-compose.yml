@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  daemon:
+    build: .
+    ports:
+      - 3600:80
+    volumes:
+      - ./tx-db.json:/code/tx_dump.json
+      - ./invoices.json:/code/invoices.json
+      - ./config.json:/code/config.json:ro

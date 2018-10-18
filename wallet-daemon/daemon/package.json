@@ -1,0 +1,45 @@
+{
+  "name": "liquidity-wallet-daemon",
+  "version": "0.0.2",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liquidity-network/liquidity-sdk.git"
+  },
+  "author": "Thibault Meunier <thibault@liquidity.network>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/liquidity-network/liqudity-sdk/issues"
+  },
+  "homepage": "https://github.com/liquidity-network/liquidity-sdk#readme",
+  "dependencies": {
+    "bignumber.js": "^7.2.1",
+    "body-parser": "^1.18.3",
+    "core-js": "^2.5.7",
+    "cors": "^2.8.4",
+    "ethereumjs-util": "^5.2.0",
+    "ethereumjs-wallet": "^0.6.0",
+    "express": "^4.16.3",
+    "inversify": "^4.13.0",
+    "liquidity-invoice-generation": "^1.0.0",
+    "lqd-wallet-client": "file:src/utils/lqd-wallet-client",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5",
+    "rxjs": "^6.2.1",
+    "web3": "^0.20.6"
+  },
+  "devDependencies": {
+    "@types/ethereumjs-util": "^5.2.0",
+    "@types/mocha": "^5.2.4",
+    "@types/node": "^10.5.2",
+    "@types/request": "^2.47.1",
+    "@types/request-promise-native": "^1.0.15",
+    "typescript": "^2.9.2"
+  }
+}

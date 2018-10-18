@@ -1,7 +1,0 @@
-{
-  "ETHEREUM_WALLET_PRIVATE_KEY": "0x...",
-  "ETHEREUM_NODE_URL": "https://mainnet.infura.io",
-  "ETHEREUM_NETWORK_ID": "1",
-  "HUB_CONTRACT_ADDRESS": "0xac8c3D5242b425DE1b86b17E407D8E949D994010",
-  "HUB_PROVIDER_URL": "https://beta.liquidity.network"
-}
