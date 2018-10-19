@@ -3,8 +3,7 @@
 Invoice
 -------
 
-It is useful for merchant to generate a transaction that has to be
-performed by its client. To that end, Liquidity SDK allows you to
+A tool for merchants to generate a transaction that is then fulfilled by their client. To that end, Liquidity SDK allows you to
 generate invoices. These are prefilled transactions that can be used by
 any liquidity enabled wallet.
 
@@ -122,7 +121,11 @@ Example
 .. highlight:: http
 .. code:: http
 
-   POST /invoices/generate/?amount=1&recipient=0x627306090abaB3A6e1400e9345bC60c78a8BEf57
+   POST /invoices/generate
+   data: {
+     "amount": 1,
+     "recipient": "0x627306090abaB3A6e1400e9345bC60c78a8BEf57"
+   }
 
 .. highlight:: none
 
@@ -154,7 +157,7 @@ Example
 List
 ~~~~
 
-List all transfer performed by the automaton during this round. Filters
+List all transfers performed by the automaton during this round. Filters
 can be applied.
 
 .. _header-n9081:

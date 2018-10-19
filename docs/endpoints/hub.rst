@@ -4,17 +4,17 @@
 Hub
 ---
 
-in your ``config.json`` file, you have specified a ``HUB_PROVIDER_URL``.
-This url is how the automaton communicates and retrieve information
-stored on the hub. Hub endpoints are exposed trough this category and
-allows the user to get low level information.
+In your ``config.json`` file, you have specified a ``HUB_PROVIDER_URL``.
+This url is how the automaton communicates and retrieves information
+stored on the hub. Hub endpoints are exposed through this category and
+allow the user to receive low level information.
 
 .. _header-n9257:
 
 Wallets
 ~~~~~~~
 
-List all wallets registered on associated liquidity hub.
+List all wallets registered on the associated liquidity hub.
 
 .. _header-n9259:
 

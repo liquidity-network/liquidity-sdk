@@ -4,10 +4,10 @@
 Transfers
 ---------
 
-Transfers endpoint manages wallet transfers. You should use it to send
-and checks the state of your transfers. It saves all transfers you make
-in a database. Therefore it is possible to retrieve your funds if the
-hub goes down, satisfying the non-custodian property.
+Transfers endpoint manage wallet transfers and are used to send
+and check the state of your transfers. All transfers made are saved
+to a database. Consequently, it is possible to retrieve your funds if the
+hub is unresponsive, satisfying the non-custodian property.
 
 .. _header-n8811:
 
@@ -104,7 +104,11 @@ Example
 .. highlight:: http
 .. code:: http
 
-   POST /tranfers/send?recipient=0x627306090abaB3A6e1400e9345bC60c78a8BEf57&amount=1
+   POST /tranfers/send
+   data: {
+     "recipient": "0x627306090abaB3A6e1400e9345bC60c78a8BEf57",
+     "amount": 1
+   }
 
 .. highlight:: none
 
@@ -128,7 +132,7 @@ Example
 List
 ~~~~
 
-List all transfer performed by the automaton during this round. Filters
+A List of all transfers performed by the automaton during this round. Filters
 can be applied.
 
 .. _header-n8891:

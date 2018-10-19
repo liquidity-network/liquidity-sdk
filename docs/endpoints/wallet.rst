@@ -3,7 +3,7 @@
 Wallet
 ------
 
-Wallet endpoint provides all informations related to the current state
+Wallet endpoint provides all information regarding the current state
 of the automaton.
 
 .. _header-n9183:
@@ -11,7 +11,7 @@ of the automaton.
 Information
 ~~~~~~~~~~~
 
-Retrieve all information about the wallet managed by the automaton.
+Retrieve all information related to the wallet managed by the automaton.
 
 .. _header-n9185:
 

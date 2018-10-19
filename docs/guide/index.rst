@@ -6,14 +6,14 @@ Getting started
 
 .. _header-n8774:
 
-Pre-requisite
+Prerequisite
 ~~~~~~~~~~~~~
 
 -  Docker: `Official
    website <https://docs.docker.com/install/#supported-platforms>`__
 
-   Docker is a container management system. It supports Windows, mac and
-   most linux distributions. Select the one that applies to your case
+   Docker is a container management system. It supports Windows, Mac and
+   most Linux distributions. Select the one that applies to your case
    and follow the instructions.
 
 -  Docker-compose: `Official
@@ -26,7 +26,7 @@ Pre-requisite
    website <https://wallet.liquidity.network/>`__
 
    This wallet will be managed by your automaton. Click on
-   ``Add New Wallet``, select the wallet you want register and click on
+   ``Add New Wallet``, select the wallet you want to register and click on
    ``Save``. Then, open your newly created wallet, click on register and
    perform Metamask related actions.
 
@@ -68,7 +68,7 @@ edit the configuration.
    cp config.template.json config.json
 .. highlight:: none
 
-Your configuration file should look like the following
+Your configuration file should look like the following.
 
 Mainnet
 """""""
@@ -85,19 +85,6 @@ Mainnet
    }
 .. highlight:: none
 
-Kovan Testnet
-"""""""""""""
-.. highlight:: json
-.. code:: json
-
-   {
-     "ETHEREUM_WALLET_PRIVATE_KEY": "0x...",
-     "ETHEREUM_NODE_URL": "https://kovan.infura.io",
-     "ETHEREUM_NETWORK_ID": "42",
-     "HUB_CONTRACT_ADDRESS": "0x182e0AA3FCE28FC6c623C80363841375Fd636E0A",
-     "HUB_PROVIDER_URL": "https://kovan.liquidity.network"
-   }
-.. highlight:: none
 
 .. _header-n8797:
 
@@ -111,33 +98,33 @@ Kovan Testnet
 
 .. highlight:: none
 
-For those of you who are on have a graphic docker version, you have to
-launch ``docker-compose.yml`` file located at the root of liquidity sdk
+For those of you who are using a graphic docker version,
+launch ``docker-compose.yml`` file located at the root of the liquidity SDK
 directory.
 
 This command will start your wallet automaton. It can take some time for
-it to synchronise with the hub, especially at first launch.
+it to synchronise with the hub, especially when first launched.
 
 .. _header-n8801:
 
 4. Celebrate 🎉
 ^^^^^^^^^^^^^^
 
-You're done with the installation! The SDK is self-hosted on your
+You have finished the installation! The SDK is self-hosted on your
 machine and is accessible under ``localhost:3600``.
 
-You can try accessing https://localhost:3600/wallet/information where
-you should see the current state of your wallet.
+You can test this by accessing https://localhost:3600/wallet/information here
+you should be able to see the current state of your wallet.
 
 .. _header-n8805:
 
 Documentation
 ~~~~~~~~~~~~~
 
-The documentation you are about to read is structured in categories.
-Each category has a list of endpoints made accessible by the wallet
+The following documentation is structured into categories.
+Each category contains a list of endpoints made accessible by the wallet
 automaton. These endpoints are documented with what they provide, how to
-call them, what are their result and an example is provided.
+call them, their expected result and an example.
 
 If you spot any issues, please post an issue on our `github
 repository <https://github.com/liquidity-network/liquidity-sdk>`__
