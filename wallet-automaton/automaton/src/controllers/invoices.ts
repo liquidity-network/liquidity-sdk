@@ -64,9 +64,11 @@ export default class Invoices {
     }
 
     public static list(filters: Filter) {
-        return Transfers.list(filters)
-            .filter(transfer =>
-                typeof invoices[transfer.nonce] !== 'undefined'
-            )
+    // TODO: apply filters
+    return invoices;
+    //        return Transfers.list(filters)
+    //        .filter(transfer =>
+    //            typeof invoices[transfer.nonce] !== 'undefined'
+    //        )
     }
 }

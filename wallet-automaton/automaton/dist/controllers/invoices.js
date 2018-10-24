@@ -21,7 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const lqd_client_1 = __importDefault(require("./lqd-client"));
 const liquidity_invoice_generation_1 = __importDefault(require("liquidity-invoice-generation"));
 const fs = __importStar(require("fs"));
-const transfers_1 = require("./transfers");
 const invoicesFile = `./invoices.json`;
 let invoices = undefined;
 const redirectionService = 'https://lqd.money';
@@ -72,8 +71,7 @@ class Invoices {
         return invoice;
     }
     static list(filters) {
-        return transfers_1.Transfers.list(filters)
-            .filter(transfer => typeof invoices[transfer.nonce] !== 'undefined');
+        return invoices;
     }
 }
 exports.default = Invoices;
