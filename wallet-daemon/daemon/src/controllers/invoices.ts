@@ -3,6 +3,7 @@ import LqdInvoice from 'liquidity-invoice-generation'
 import * as fs from 'fs'
 import Filter from '../models/filter'
 import {Transfers} from "./transfers";
+import TransactionStatusFactory, {TransactionStatus} from "../models/transaction-status";
 
 const invoicesFile = `./invoices.json`
 let invoices = undefined
@@ -26,7 +27,7 @@ const restoreInvoices = (file) => {
 restoreInvoices(invoicesFile)
 
 const saveInvoices = async (file) => {
-    fs.writeFile(file, invoices, (err) => {
+    fs.writeFile(file, JSON.stringify(invoices), (err) => {
         if (err) {
             return console.log(`ERROR: ${err}`);
         }
@@ -64,9 +65,34 @@ export default class Invoices {
     }
 
     public static list(filters: Filter) {
-        return Transfers.list(filters)
+        filters.sender = (typeof filters.sender === 'undefined') ? LqdClient.wallet().address : filters.sender
+        filters.status = (typeof filters.status === 'undefined') ? TransactionStatus.CONFIRMED : filters.status
+        filters.count = (typeof filters.count === 'undefined') ? 100 : filters.count
+
+        const executed = Transfers.list(filters)
             .filter(transfer =>
                 typeof invoices[transfer.nonce] !== 'undefined'
+            ).map(transfer =>
+                invoices[transfer.nonce]
             )
+
+        // TODO: proper filtering
+        // to be added: transactionId, sender
+        return Object.keys(invoices)
+            .map(key => {
+                const invoice = invoices[key]
+                invoice.status = TransactionStatusFactory.fromBoolean(executed.indexOf(invoice) >= 0)
+                return invoice
+            })
+            .filter(invoice => {
+                return (typeof filters.nonce !== 'undefined' && filters.nonce === invoice.nonce) ||
+                    (typeof filters.recipient !== 'undefined' && invoice.destinations.walletAddresses.indexOf(filters.recipient) >= 0) ||
+                    (typeof filters.amount !== 'undefined' && filters.amount === invoice.amount) ||
+                    true
+            })
+            .slice(0, filters.count)
+            .reduce((acc, invoice) => {
+                return Object.defineProperty(acc, invoice.nonce, {value: invoice, enumerable: true})
+            }, {})
     }
 }
