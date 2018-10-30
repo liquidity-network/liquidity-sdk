@@ -17,11 +17,12 @@ import BigNumber from "bignumber.js"
 import Web3Utils from 'web3-utils'
 import TransactionStatus from "../models/transaction-status";
 import {TransferAggregateType} from "lqd-wallet-client/models/transactions/transfer-aggregate-type.model";
+const Tx = require('ethereumjs-tx');
 
 const fs = require("fs");
+const path = require('path');
 
-const config = JSON.parse(fs.readFileSync(`/code/config.json`));
-
+const config = JSON.parse(fs.readFileSync(path.join(path.dirname(path.dirname(path.dirname(__dirname))), 'config.json') ));
 
 function padWithZeroes(numb, length) {
     let myString = '' + numb;
@@ -145,6 +146,7 @@ const PRIVATE_KEY = config.ETHEREUM_WALLET_PRIVATE_KEY;
 let lqdClient = LQDClientFactory(config.ETHEREUM_NODE_URL);
 
 lqdClient.web3Service.rpc.eth.sign = function (accountAddress, data, callback) {
+    console.log("ETH SIGN TRIGGERED!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     callback(null, signMessageRSV(data, PRIVATE_KEY));
 };
 lqdClient.web3Service.rpc.personal.sign = null;
@@ -289,5 +291,43 @@ export default class LQDManager {
 
     public static wallet() {
         return clientWallet
+    }
+
+    public static sendRawTransaction(transaction) {
+      const hubProvider = LQDManager.hubProvider();
+      const wallet = LQDManager.wallet();
+      const privateKey =  new Buffer(LQDManager.privateKey().substr(2), 'hex');
+
+      transaction['from'] = wallet.address;
+      transaction['to'] = wallet.contractAddress;
+      transaction['gasPrice'] = lqdClient.web3Service.rpc.eth.gasPrice.toNumber() * 1.4;
+      transaction['chainId'] = parseInt(hubProvider['networkId']);
+      transaction['nonce'] =  lqdClient.web3Service.rpc.eth.getTransactionCount(wallet.address);
+
+      const gasLimit = lqdClient.web3Service.rpc.eth.estimateGas({
+          "from" : transaction['from'],
+          "to" : transaction['to'],
+          "nonce" : transaction['nonce'],
+          "data" : transaction['data']
+      })
+
+      transaction['gasLimit'] = gasLimit + 10000;
+
+      let tx = new Tx(transaction);
+      tx.sign(privateKey);
+
+      const serializedTx = tx.serialize();
+
+      return new Promise((resolve, reject) => {
+        lqdClient.web3Service.rpc.eth.sendRawTransaction('0x' + serializedTx.toString('hex'),
+          function(err, res) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(res);
+            }
+          }
+        );
+      });
     }
 }
