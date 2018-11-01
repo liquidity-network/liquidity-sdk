@@ -75,9 +75,8 @@ const liquidity = require('liquidity-sdk')
 const to = '0x627306090abaB3A6e1400e9345bC60c78a8BEf57'
 const amount = 32
 
-const performedTransfer = await liquidity.transfers.send(to, amount)
-
-console.log(`Tranfer has been ${performedTranfer}`)
+liquidity.transfers.send(to, amount)
+  .then(performedTransfer => console.log(`Tranfer has been ${performedTranfer}`))
 ```
 
 
