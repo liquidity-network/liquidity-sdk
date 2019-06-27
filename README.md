@@ -4,7 +4,7 @@ Welcome to Liquidity SDK documentation. In here, you will find all resources you
 
 ## Links
 
-+ Documentation: https://liquidity-sdk.readthedocs.io
++ Documentation: https://liquidity-network.gitbook.io
 + Website: https://liquidity.network
 + Telegram: https://t.me/liquiditydevelopers
 
